@@ -4,8 +4,10 @@ import type { ColumnsType } from 'antd/es/table';
 import type { Author } from '../types/author';
 import { getAuthors } from '../storage/authorStorage';
 import CreateAuthorModal from '../components/CreateAuthorModal';
-import { deleteAuthor } from '../storage/authorStorage';
+import { deleteAuthorWithValidation } from '../services/authorService';
+import { message } from 'antd';
 import { Popconfirm } from 'antd';
+
 
 function AuthorsPage() {
     const [authors, setAuthors] = useState<Author[]>([]);
@@ -25,8 +27,13 @@ function AuthorsPage() {
     }, []);
 
     const handleDelete = async (id: string) => {
-        await deleteAuthor(id);
-        loadAuthors();
+        try {
+            await deleteAuthorWithValidation(id);
+            await loadAuthors();
+            message.success('Author deleted successfully');
+        } catch (error: any) {
+            message.error(error.message);
+        }
     };
 
     const columns: ColumnsType<Author> = [
