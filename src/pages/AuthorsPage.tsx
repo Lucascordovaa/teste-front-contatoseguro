@@ -11,10 +11,13 @@ function AuthorsPage() {
     const [authors, setAuthors] = useState<Author[]>([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedAuthor, setSelectedAuthor] = useState<Author | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     const loadAuthors = async () => {
+        setIsLoading(true);
         const data = await getAuthors();
         setAuthors(data);
+        setIsLoading(false);
     };
 
     useEffect(() => {
@@ -77,6 +80,7 @@ function AuthorsPage() {
                 dataSource={authors}
                 rowKey="id"
                 bordered
+                loading={isLoading}
             />
 
             <CreateAuthorModal
