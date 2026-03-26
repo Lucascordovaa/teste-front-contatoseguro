@@ -19,11 +19,6 @@ export const createBook = async (book: Book) => {
     return book;
 };
 
-export const getBookById = async (id: string) => {
-    const books = await getBooks();
-    return books.find((b) => b.id === id) || null;
-};
-
 export const deleteBook = async (id: string) => {
     const books = await getBooks();
     const updated = books.filter((b) => b.id !== id);

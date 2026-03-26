@@ -5,12 +5,13 @@ import BooksPage from './pages/BooksPage';
 
 function App() {
   return (
+      //rotas
       <BrowserRouter>
         <Routes>
           <Route element={<AppLayout />}>
-            <Route path="/" element={<Navigate to="/authors" replace />} />
-            <Route path="/authors" element={<AuthorsPage />} />
-            <Route path="/books" element={<BooksPage />} />
+            <Route path="/" element={<Navigate to="/autores" replace />} />
+            <Route path="/autores" element={<AuthorsPage />} />
+            <Route path="/livros" element={<BooksPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

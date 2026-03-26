@@ -7,7 +7,7 @@ export const deleteAuthorWithValidation = async (authorId: string) => {
     const hasLinkedBooks = books.some((book) => book.author_id === authorId);
 
     if (hasLinkedBooks) {
-        throw new Error('This author cannot be deleted because they are linked to one or more books.');
+        throw new Error('Este autor não pode ser excluído pois há um ou mais livros vinculados a ele');
     }
 
     await deleteAuthor(authorId);

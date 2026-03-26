@@ -30,27 +30,27 @@ function CreateBookModal({ open, onClose, onSuccess, authors }: Props) {
 
     return (
         <Modal
-            title="Create Book"
+            title="Criar livro"
             open={open}
             onCancel={onClose}
             onOk={() => form.submit()}
         >
             <Form form={form} layout="vertical" onFinish={handleSubmit}>
                 <Form.Item
-                    label="Name"
+                    label="Título"
                     name="name"
-                    rules={[{ required: true, message: 'Please enter book name' }]}
+                    rules={[{ required: true, message: 'Digite o nome do livro' }]}
                 >
                     <Input />
                 </Form.Item>
 
                 <Form.Item
-                    label="Author"
+                    label="Autor"
                     name="author_id"
-                    rules={[{ required: true, message: 'Please select an author' }]}
+                    rules={[{ required: true, message: 'Selecione um autor' }]}
                 >
                     <Select
-                        placeholder="Select an author"
+                        placeholder="Selecione um autor"
                         options={authors.map((author) => ({
                             label: author.name,
                             value: author.id,
@@ -58,7 +58,7 @@ function CreateBookModal({ open, onClose, onSuccess, authors }: Props) {
                     />
                 </Form.Item>
 
-                <Form.Item label="Pages" name="pages">
+                <Form.Item label="Numero de páginas" name="pages">
                     <InputNumber style={{ width: '100%' }} min={1} />
                 </Form.Item>
             </Form>

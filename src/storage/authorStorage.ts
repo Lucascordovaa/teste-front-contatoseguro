@@ -19,11 +19,6 @@ export const createAuthor = async (author: Author) => {
     return author;
 };
 
-export const getAuthorById = async (id: string) => {
-    const authors = await getAuthors();
-    return authors.find(a => a.id === id) || null;
-};
-
 export const deleteAuthor = async (id: string) => {
     const authors = await getAuthors();
     const updated = authors.filter(a => a.id !== id);

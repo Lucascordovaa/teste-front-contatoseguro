@@ -8,6 +8,8 @@ import { deleteAuthorWithValidation } from '../services/authorService';
 import { message } from 'antd';
 import { Popconfirm } from 'antd';
 import dayjs from 'dayjs';
+import { Space } from 'antd';
+import { Flex } from 'antd';
 
 
 function AuthorsPage() {
@@ -31,7 +33,7 @@ function AuthorsPage() {
         try {
             await deleteAuthorWithValidation(id);
             await loadAuthors();
-            message.success('Author deleted successfully');
+            message.success('Autor excluído com sucesso');
         } catch (error: any) {
             message.error(error.message);
         }
@@ -39,7 +41,7 @@ function AuthorsPage() {
 
     const columns: ColumnsType<Author> = [
         {
-            title: 'Name',
+            title: 'Nome',
             dataIndex: 'name',
         },
         {
@@ -47,47 +49,45 @@ function AuthorsPage() {
             dataIndex: 'email',
         },
         {
-            title: 'Created At',
+            title: 'Criado em',
             dataIndex: 'createdAt',
             render: (createdAt: string | undefined) =>
                 createdAt ? dayjs(createdAt).format('DD/MM/YYYY HH:mm') : '—',
         },
         {
-            title: 'Actions',
+            title: 'Ações',
             render: (_, record) => (
-                <>
-                    <Button
-                        style={{ marginRight: 8 }}
-                        onClick={() => setSelectedAuthor(record)}
-                    >
-                        View
+                <Space>
+                    <Button onClick={() => setSelectedAuthor(record)}>
+                        Ver detalhes
                     </Button>
 
                     <Popconfirm
-                        title="Delete this author?"
-                        description="Are you sure you want to delete this author?"
+                        title="Excluir este autor?"
+                        description="Tem certeza que deseja excluir este autor?"
                         onConfirm={() => handleDelete(record.id)}
-                        okText="Yes"
-                        cancelText="No"
+                        okText="Confirmar"
+                        cancelText="Cancelar"
                     >
-                        <Button danger>Delete</Button>
+                        <Button danger>Excluir</Button>
                     </Popconfirm>
-                </>
+                </Space>
             ),
         },
     ];
 
     return (
-        <div style={{ padding: 24 }}>
-            <h1>Authors</h1>
+        <div style={{padding: 24, maxWidth: 1400, margin: '0 auto'}}>
+            <Flex justify="space-between" align="center" style={{ marginBottom: 16 }}>
+                <h1 style={{ margin: 0 }}>Autores</h1>
 
-            <Button
-                type="primary"
-                style={{ marginBottom: 16 }}
-                onClick={() => setIsModalOpen(true)}
-            >
-                Create Author
-            </Button>
+                <Button
+                    type="primary"
+                    onClick={() => setIsModalOpen(true)}
+                >
+                    Criar Autor
+                </Button>
+            </Flex>
 
             <Table
                 columns={columns}
@@ -104,15 +104,14 @@ function AuthorsPage() {
             />
 
             <Modal
-                title="Author Details"
+                title="Detalhes do Autor"
                 open={!!selectedAuthor}
                 onCancel={() => setSelectedAuthor(null)}
                 footer={null}
             >
-                <p><strong>Name:</strong> {selectedAuthor?.name}</p>
+                <p><strong>Nome:</strong> {selectedAuthor?.name}</p>
                 <p><strong>Email:</strong> {selectedAuthor?.email || '—'}</p>
-                <p><strong>Created
-                    At:</strong> {selectedAuthor?.createdAt ? dayjs(selectedAuthor.createdAt).format('DD/MM/YYYY HH:mm') : '—'}
+                <p><strong>Criado em:</strong> {selectedAuthor?.createdAt ? dayjs(selectedAuthor.createdAt).format('DD/MM/YYYY HH:mm') : '—'}
                 </p>
             </Modal>
         </div>

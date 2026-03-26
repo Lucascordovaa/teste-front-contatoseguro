@@ -1,3 +1,4 @@
+//layout geral da aplicação
 import { Layout, Menu } from 'antd';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
@@ -15,12 +16,12 @@ function AppLayout() {
                     selectedKeys={[location.pathname]}
                     items={[
                         {
-                            key: '/authors',
-                            label: <Link to="/authors">Authors</Link>,
+                            key: '/autores',
+                            label: <Link to="/autores">Autores</Link>,
                         },
                         {
-                            key: '/books',
-                            label: <Link to="/books">Books</Link>,
+                            key: '/livros',
+                            label: <Link to="/livros">Livros</Link>,
                         },
                     ]}
                 />

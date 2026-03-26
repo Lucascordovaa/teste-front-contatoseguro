@@ -27,16 +27,16 @@ function CreateAuthorModal({ open, onClose, onSuccess }: Props) {
 
     return (
         <Modal
-            title="Create Author"
+            title="Criar autor"
             open={open}
             onCancel={onClose}
             onOk={() => form.submit()}
         >
             <Form form={form} layout="vertical" onFinish={handleSubmit}>
                 <Form.Item
-                    label="Name"
+                    label="Nome"
                     name="name"
-                    rules={[{ required: true, message: 'Please enter name' }]}
+                    rules={[{ required: true, message: 'Digite um nome' }]}
                 >
                     <Input />
                 </Form.Item>
