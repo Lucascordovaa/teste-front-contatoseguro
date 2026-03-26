@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {Table, Button, Modal, Popconfirm, Flex, message} from 'antd';
+import {Table, Button, Modal, Popconfirm, message, Space, Flex} from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import type { Book } from '../types/book';
 import type { Author } from '../types/author';
@@ -7,7 +7,6 @@ import { getBooks, deleteBook } from '../storage/bookStorage';
 import { getAuthors } from '../storage/authorStorage';
 import CreateBookModal from '../components/CreateBookModal';
 import dayjs from 'dayjs';
-import { Space } from 'antd';
 
 function BooksPage() {
     const [books, setBooks] = useState<Book[]>([]);

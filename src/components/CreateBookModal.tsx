@@ -11,10 +11,16 @@ interface Props {
     authors: Author[];
 }
 
+interface CreateBookFormValues {
+    name: string;
+    author_id: string;
+    pages: number;
+}
+
 function CreateBookModal({ open, onClose, onSuccess, authors }: Props) {
     const [form] = Form.useForm();
 
-    const handleSubmit = async (values: any) => {
+    const handleSubmit = async (values: CreateBookFormValues) => {
         await createBook({
             id: generateId(),
             name: values.name,

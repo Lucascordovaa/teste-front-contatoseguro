@@ -1,15 +1,11 @@
 import { useEffect, useState } from 'react';
-import {Table, Button, Modal} from 'antd';
+import {Table, Button, Modal, message, Popconfirm, Space, Flex} from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import type { Author } from '../types/author';
 import { getAuthors } from '../storage/authorStorage';
 import CreateAuthorModal from '../components/CreateAuthorModal';
 import { deleteAuthorWithValidation } from '../services/authorService';
-import { message } from 'antd';
-import { Popconfirm } from 'antd';
 import dayjs from 'dayjs';
-import { Space } from 'antd';
-import { Flex } from 'antd';
 
 
 function AuthorsPage() {
@@ -34,8 +30,10 @@ function AuthorsPage() {
             await deleteAuthorWithValidation(id);
             await loadAuthors();
             message.success('Autor excluído com sucesso');
-        } catch (error: any) {
-            message.error(error.message);
+        } catch (error) {
+            const errorMessage =
+                error instanceof Error ? error.message : 'Erro ao excluir autor';
+            message.error(errorMessage);
         }
     };
 

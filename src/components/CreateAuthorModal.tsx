@@ -9,10 +9,15 @@ interface Props {
     onSuccess: () => void;
 }
 
+interface CreateAuthorFormValues {
+    name: string;
+    email?: string;
+}
+
 function CreateAuthorModal({ open, onClose, onSuccess }: Props) {
     const [form] = Form.useForm();
 
-    const handleSubmit = async (values: any) => {
+    const handleSubmit = async (values: CreateAuthorFormValues) => {
         await createAuthor({
             id: generateId(),
             name: values.name,
