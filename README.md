@@ -1,73 +1,117 @@
-# React + TypeScript + Vite
+# Consulta Autores & Livros
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Desafio técnico front-end construido utilizando **React**, **TypeScript**, **Vite**, **Ant Design**, **Dayjs**, **IndexedDB (localForage)**, e **Docker**.
 
-Currently, two official plugins are available:
+O principal objetivo deste projeto é fornecer uma aplicação web de gerenciamento simples e bem estruturada para **Livros** e **Autores**, seguindo os requisitos propostos no desafio.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
+## Tech Stack
 
-## React Compiler
+- **React 18**
+- **TypeScript**
+- **Vite**
+- **Ant Design**
+- **Dayjs**
+- **React Router DOM**
+- **localForage** (IndexedDB)
+- **Docker**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Executando com Docker
+> **Docker é a forma recomendada de executar este projeto para avaliação**, uma vez que era um requisito obrigatório do desafio.
 
-## Expanding the ESLint configuration
+### Requisitos
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Docker Desktop instalado e rodando
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Rodando o projeto
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+    docker compose up --build
+    
+    http://localhost:5173
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+## Extra: Executando sem o Docker
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Requisitos
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+-   Node.js 18+ or 20+
+-   npm
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Rodando o projeto
+
+    npm install
+    npm run dev
+    http://localhost:5173
+
+---
+
+## Funcionalidades
+
+### Autores
+- Criar autor (modal)
+- Vizualizar autores (tabela)
+- Vizualizar um autor específico (modal)
+- Excluir um autor (alerta)
+
+### Livros
+- Criar livro (modal)
+- Vizualizar livros (table)
+- Vizualizar um livro específico (modal)
+- Excluir um livro (alerta)
+
+---
+
+## Regra de negócio
+
+- Um **autor não pode ser excluído** se houver um ou mais livros vinculados a ele.
+
+Essa validação foi implementada para preservar a relação entre autores e livros.
+
+---
+
+## Persistência de dados
+
+
+Todos os dados do aplicativo são armazenados no navegador usando o **IndexedDB**, por meio da biblioteca `localForage`.
+
+Isso significa que:
+- os dados são mantidos entre as atualizações da página
+- não é necessário nenhum backend nem API externa
+- o armazenamento ocorre no lado do cliente, conforme solicitado no desafio
+
+---
+### Organização de pastas do projeto
+
+-   **components/** → Elementos reutilizaveis de UI como modais e layout
+-   **pages/** → Orquestração de funcionalidades e lógica de tela (páginas principais)
+-   **services/** → Regras de negócio e validação
+-   **storage/** → logica de persistência do IndexedDB
+-   **types/** → Definição de entidades do TypeScript
+-   **utils/** → utilitários auxiliares
+
+----------
+
+## Notas de arquitetura
+
+
+O projeto foi organizado com foco na **clareza**, na **separação de responsabilidades** e na **manutenção**.
+
+Algumas decisões tomadas:
+
+-   As **páginas** são responsáveis pelo fluxo de funcionalidades e pela coordenação de estados
+-   Os **componentes** foram extraídos quando a interface do usuário tinha uma responsabilidade específica (como janelas modais)
+-   O **armazenamento** foi isolado para centralizar a lógica de persistência do navegador
+-   Os **Serviços** foram utilizados para regras de domínio, como validação de exclusão
+-   O **Dayjs** foi utilizado para geração e formatação de datas
+-   O **Ant Design** foi utilizado para layout, tabelas, formulários, modais e feedback
+
+----------
+## Notas Adicionais
+
+Este projeto foi desenvolvido com foco em:
+
+-   cumprimento dos requisitos
+-   implementação simples e fácil de manter
+-   estrutura organizada
+-   legibilidade
+-   interface de usuário consistente utilizando o Ant Design
