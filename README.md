@@ -55,7 +55,7 @@ O principal objetivo deste projeto é fornecer uma aplicação web de gerenciame
 
 ### Livros
 - Criar livro (modal)
-- Vizualizar livros (table)
+- Vizualizar livros (tabela)
 - Vizualizar um livro específico (modal)
 - Excluir um livro (alerta)
 
