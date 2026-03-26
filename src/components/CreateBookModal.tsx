@@ -2,6 +2,7 @@ import { Modal, Form, Input, Select, InputNumber } from 'antd';
 import { createBook } from '../storage/bookStorage';
 import { generateId } from '../utils/id';
 import type { Author } from '../types/author';
+import dayjs from 'dayjs';
 
 interface Props {
     open: boolean;
@@ -19,6 +20,7 @@ function CreateBookModal({ open, onClose, onSuccess, authors }: Props) {
             name: values.name,
             author_id: values.author_id,
             pages: values.pages,
+            createdAt: dayjs().toISOString(),
         });
 
         form.resetFields();

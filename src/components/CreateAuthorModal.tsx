@@ -1,6 +1,7 @@
 import { Modal, Form, Input } from 'antd';
 import { createAuthor } from '../storage/authorStorage';
 import { generateId } from '../utils/id';
+import dayjs from 'dayjs';
 
 interface Props {
     open: boolean;
@@ -16,6 +17,7 @@ function CreateAuthorModal({ open, onClose, onSuccess }: Props) {
             id: generateId(),
             name: values.name,
             email: values.email,
+            createdAt: dayjs().toISOString(),
         });
 
         form.resetFields();

@@ -6,6 +6,7 @@ import type { Author } from '../types/author';
 import { getBooks, deleteBook } from '../storage/bookStorage';
 import { getAuthors } from '../storage/authorStorage';
 import CreateBookModal from '../components/CreateBookModal';
+import dayjs from 'dayjs';
 
 function BooksPage() {
     const [books, setBooks] = useState<Book[]>([]);
@@ -63,6 +64,12 @@ function BooksPage() {
             title: 'Pages',
             dataIndex: 'pages',
             render: (pages: number | undefined) => pages || '—',
+        },
+        {
+            title: 'Created At',
+            dataIndex: 'createdAt',
+            render: (createdAt: string | undefined) =>
+                createdAt ? dayjs(createdAt).format('DD/MM/YYYY HH:mm') : '—',
         },
         {
             title: 'Actions',
@@ -132,6 +139,9 @@ function BooksPage() {
                 <p><strong>Name:</strong> {selectedBook?.name}</p>
                 <p><strong>Author:</strong> {getAuthorName(selectedBook?.author_id || '')}</p>
                 <p><strong>Pages:</strong> {selectedBook?.pages || '—'}</p>
+                <p><strong>Created
+                    At:</strong> {selectedBook?.createdAt ? dayjs(selectedBook.createdAt).format('DD/MM/YYYY HH:mm') : '—'}
+                </p>
             </Modal>
         </div>
     );

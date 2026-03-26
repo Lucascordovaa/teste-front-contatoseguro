@@ -7,6 +7,7 @@ import CreateAuthorModal from '../components/CreateAuthorModal';
 import { deleteAuthorWithValidation } from '../services/authorService';
 import { message } from 'antd';
 import { Popconfirm } from 'antd';
+import dayjs from 'dayjs';
 
 
 function AuthorsPage() {
@@ -44,6 +45,12 @@ function AuthorsPage() {
         {
             title: 'Email',
             dataIndex: 'email',
+        },
+        {
+            title: 'Created At',
+            dataIndex: 'createdAt',
+            render: (createdAt: string | undefined) =>
+                createdAt ? dayjs(createdAt).format('DD/MM/YYYY HH:mm') : '—',
         },
         {
             title: 'Actions',
@@ -104,6 +111,9 @@ function AuthorsPage() {
             >
                 <p><strong>Name:</strong> {selectedAuthor?.name}</p>
                 <p><strong>Email:</strong> {selectedAuthor?.email || '—'}</p>
+                <p><strong>Created
+                    At:</strong> {selectedAuthor?.createdAt ? dayjs(selectedAuthor.createdAt).format('DD/MM/YYYY HH:mm') : '—'}
+                </p>
             </Modal>
         </div>
     );
