@@ -93,6 +93,7 @@ function AuthorsPage() {
                 rowKey="id"
                 bordered
                 loading={isLoading}
+                scroll={{ x: 'max-content' }}
             />
 
             <CreateAuthorModal
