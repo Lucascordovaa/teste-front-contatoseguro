@@ -1,8 +1,8 @@
 # Consulta Autores & Livros
 
-Desafio técnico front-end construido utilizando **React**, **TypeScript**, **Vite**, **Ant Design**, **Dayjs**, **IndexedDB (localForage)**, e **Docker**.
+Projeto front-end construido utilizando **React**, **TypeScript**, **Vite**, **Ant Design**, **Dayjs**, **IndexedDB (localForage)**, e **Docker**.
 
-O principal objetivo deste projeto é fornecer uma aplicação web de gerenciamento simples e bem estruturada para **Livros** e **Autores**, seguindo os requisitos propostos no desafio.
+O principal objetivo deste projeto é fornecer uma aplicação web de gerenciamento simples e bem estruturada para **Livros** e **Autores**.
 
 ---
 ## Tech Stack
@@ -17,7 +17,7 @@ O principal objetivo deste projeto é fornecer uma aplicação web de gerenciame
 - **Docker**
 
 ## Executando com Docker
-> **Docker é a forma recomendada de executar este projeto para avaliação**, uma vez que era um requisito obrigatório do desafio.
+> **Docker é a forma recomendada de executar este projeto**.
 
 ### Requisitos
 
